@@ -52,8 +52,9 @@ if(!delate){
     res.status(500)
     throw new Error("Tickets Not Exist")
 }else{
-    const delateTicket = await Tickets.remove()
-    res.status(200).json({delateTicket,message:`Delete ${req.params.id}` ,})
+   await Tickets.remove()
+    res.status(200).json({id:req.params.id,
+        message:`Delete ${req.params.id}` ,})
 }
     
 })
