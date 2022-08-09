@@ -47,10 +47,14 @@ if(!ticket){
 
 
 const delateTickets = asyncHandelar( async (req,res)=>{
-    res.json({
-        massege:"delete tickets",
-      
-    })
+    const delate = await Tickets.findById(req.params.id)
+if(!delate){
+    res.status(500)
+    throw new Error("Tickets Not Exist")
+}else{
+    const delateTicket = await Tickets.remove()
+    res.status(200).json({delateTicket,message:`Delete ${req.params.id}` ,})
+}
     
 })
 module.exports={
